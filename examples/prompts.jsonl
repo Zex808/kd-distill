@@ -1,0 +1,10 @@
+{"prompt": "Explain what a transformer neural network is in simple terms."}
+{"prompt": "What is the difference between supervised and unsupervised learning?"}
+{"prompt": "Describe backpropagation and why it matters for training neural networks."}
+{"prompt": "What is knowledge distillation and why would you use it?"}
+{"prompt": "Explain the attention mechanism in one paragraph."}
+{"prompt": "What is overfitting and how do you prevent it?"}
+{"prompt": "Compare ReLU and GELU activation functions."}
+{"prompt": "What does the learning rate control during training?"}
+{"prompt": "Explain gradient descent in plain language."}
+{"prompt": "What is the difference between a parameter and a hyperparameter?"}

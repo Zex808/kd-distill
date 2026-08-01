@@ -1,0 +1,39 @@
+teacher:
+  provider: openai          # openai | anthropic | ollama
+  model: gpt-4o-mini        # or claude-3-haiku-20240307 | qwen2.5:3b
+  temperature: 1.0          # higher = softer logit distribution
+  logprobs: true            # OpenAI only — enables real soft-label KD
+  top_logprobs: 5           # vocab slots per token position
+  api_key_env: OPENAI_API_KEY  # env var name to read key from
+
+student:
+  task: generation          # generation | classification
+  pretrained: distilgpt2    # HF model id — small = fast local train
+  max_length: 256
+  num_labels: 2             # classification only
+
+training:
+  epochs: 3
+  batch_size: 4             # tune per GPU VRAM; 4 = ~6GB
+  grad_accum: 4             # effective batch = 16
+  lr: 2.0e-5
+  warmup_steps: 100
+  alpha: 0.7                # KD loss weight; (1-α) = CE weight
+  temperature: 4.0          # distillation temperature (Hinton 2015)
+  save_steps: 500
+  output_dir: ./checkpoints
+  fp16: true                # recommended on GPU
+
+data:
+  prompts_file: data/prompts.jsonl   # {prompt: "..."} per line, or set hf_dataset below
+  harvest_file: data/teacher_data.jsonl
+  val_split: 0.1
+  hf_dataset: null          # HuggingFace dataset ID, e.g. "tatsu-lab/alpaca"
+  hf_split: train           # split to use
+  hf_prompt_field: instruction  # field name containing the prompt text
+  hf_max_rows: 1000         # cap rows when using HF dataset
+
+wandb:
+  enabled: false            # set true after: pip install wandb && wandb login
+  project: kd-distill
+  run_name: null            # auto-generated if null

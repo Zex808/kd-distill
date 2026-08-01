@@ -1,0 +1,23 @@
+# Core ML
+torch>=2.2.0
+transformers>=4.40.0
+accelerate>=0.30.0
+datasets>=2.19.0
+
+# UI
+gradio>=4.36.0
+
+# API providers
+openai>=1.30.0
+anthropic>=0.28.0
+httpx>=0.27.0          # Ollama client
+
+# Utils
+pyyaml>=6.0
+
+# Eval metrics
+rouge-score>=0.1.2
+bert-score>=0.3.13
+
+# Experiment tracking (optional — set wandb.enabled: true in config.yaml)
+wandb>=0.17.0
